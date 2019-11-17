@@ -1,0 +1,82 @@
+.loader-main {
+	background: rgb(40, 44, 52);
+	height: 100%;
+	width: 100%;
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	top: 0;
+	z-index: 9999;
+}
+
+.centerfy {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+}
+
+.spiner {
+	position: relative;
+	width: 100px;
+	height: 100px;
+	animation: anim-spin 1s infinite ease;
+}
+
+.spiner:after {
+	content: "";
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	right: 0;
+	left: 0;
+	border-top: solid 4px #ff3c50;
+	border-right: solid 4px transparent;
+	border-bottom: solid 4px #ff3c50;
+	border-left: solid 4px transparent;
+	border-radius: 100%;
+}
+
+@keyframes anim-spin {
+	from {
+		transform: rotate(0deg);
+	}
+	to {
+		transform: rotate(360deg);
+	}
+}
+
+.loader-logo {
+	background: url(https://nurkassa.kz/img/logo.svg);
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-size: 50px;
+	width: 200px;
+	background-size: 160px;
+	height: 150px;
+	position: absolute;
+	left: calc(50% - 100px);
+	top: calc(50% - 75px);
+}
+.logo {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+}
+.logoText {
+	color: #ff3c50;
+	font-weight: 600;
+	font-size: 20px;
+}
+.logoIntro {
+	color: #fff;
+	font-weight: 600;
+}
+.spinerOpen {
+	display: none;
+}
+.slinerClose {
+	display: block;
+}
