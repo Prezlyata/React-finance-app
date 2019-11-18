@@ -1,0 +1,26 @@
+.tableRate{
+    margin: 75px auto 0;
+    max-width: 500px;
+    height: 100px;
+    color: #61dafb;
+    background: rgb(40, 44, 52);
+    border: 1px solid #000;
+    border-radius: 7px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    font-size: 20px;
+    padding: 10px 20px;
+    align-items: center;
+}
+.tableRateName{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    color: #ff3c50;
+}
+.tableRateTitle{
+    display: flex;
+    flex-direction:column;
+    
+}
