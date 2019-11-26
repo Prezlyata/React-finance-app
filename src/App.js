@@ -10,8 +10,8 @@ class App extends Component {
 		super(props);
 		this.state = {
 			loading: true,
-			сurrency:[],
-			ukCurrency:[],
+			сurrency: [],
+			ukCurrency: [],
 			currencyUSD: 0,
 			currencyEUR: 0,
 			sum: 0,
@@ -24,9 +24,9 @@ class App extends Component {
 		setTimeout(() => {
 			this.getСurrency();
 			this.getСurrencyMain();
-		}, 2000)
+		}, 2000);
 	}
-  
+
 	getСurrency = () => {
 		axios
 			.get('https://old.bank.gov.ua/NBUStatService/v1/statdirectory/exchange?json')
@@ -38,88 +38,80 @@ class App extends Component {
 			})
 			.catch((err) => {
 				console.log(err);
-		});
+			});
 	};
 
 	getСurrencyMain = () => {
-			axios
-				.get('https://old.bank.gov.ua/NBUStatService/v1/statdirectory/exchange?date=20191118&json')
-				.then((res) => {
-					this.setState({
-						ukCurrency: res.data.filter((el) => el.r030 === 840 || el.r030 === 978),
-						loading: false,
-						currencyUSD: res.data.filter((el) => el.r030 === 840)[0].rate,
-						currencyEUR: res.data.filter((el) => el.r030 === 978)[0].rate
-					});
-				})
-				.catch((err) => {
-					console.log(err);
-		});
+		axios
+			.get('https://old.bank.gov.ua/NBUStatService/v1/statdirectory/exchange?date=20191118&json')
+			.then((res) => {
+				this.setState({
+					ukCurrency: res.data.filter((el) => el.r030 === 840 || el.r030 === 978),
+					loading: false,
+					currencyUSD: res.data.filter((el) => el.r030 === 840)[0].rate,
+					currencyEUR: res.data.filter((el) => el.r030 === 978)[0].rate
+				});
+			})
+			.catch((err) => {
+				console.log(err);
+			});
 	};
-	
-	ukCurrencyList = () =>{
-		const сurrency = this.state.сurrency;
-		const ukCurrency = сurrency.filter((el) => el.r030 === 840 || el.r030 === 978)
-		this.setState({
-		ukCurrency: ukCurrency
-		})
-		console.log(this.state.ukCurrency)
-	}
 
-	changeСurrency = (e) =>{
+	ukCurrencyList = () => {
+		const сurrency = this.state.сurrency;
+		const ukCurrency = сurrency.filter((el) => el.r030 === 840 || el.r030 === 978);
+		this.setState({
+			ukCurrency: ukCurrency
+		});
+		console.log(this.state.ukCurrency);
+	};
+
+	changeСurrency = (e) => {
 		return e.target.value === '1' ? this.state.currencyUSD : this.state.currencyEUR;
-	}
+	};
 
 	handleSum = (e) => {
 		this.setState({
 			sum: +e.target.value
-		})
-		this.handleTotal()
+		});
+		// this.handleTotal();
 		// this.getTotalReset()
-	}
+	};
 
-	handleTax= (e) => {
+	handleTax = (e) => {
 		this.setState({
 			tax: +e.target.value
-		})
-		this.handleTotal()
+		});
+		// this.handleTotal();
 		// this.getTotalReset()
-	}
+	};
 
-	handleTotal = () =>{
-		const total =  this.state.sum + this.state.tax
-		this.setState({
-			total: +total
-		})
-	}
-
-	getTotalReset = () =>{
-		if(this.state.tax === '' || this.state.sum == ''){
+	getTotalReset = () => {
+		if (this.state.tax === '' || this.state.sum == '') {
 			this.setState({
-				total:0
-			})
+				total: 0
+			});
 		}
-	}
+	};
 
 	render() {
-    console.log(this.state)
+		console.log(this.state);
 
 		return (
 			<div className="App">
-        {this.state.loading
-          ? <Spiner />
-          : <React.Fragment>
-			  <TableCurrency 
-				onUkCurrency={this.state.ukCurrency}
-			  />
-			  <Count 
-				onChangeСurrency={this.changeСurrency}
-				onHandleSum={this.handleSum}
-				onHandleTax={this.handleTax}
-				onTotal={this.state.total}
-			  />
-          </React.Fragment>
-        }
+				{this.state.loading ? (
+					<Spiner />
+				) : (
+					<React.Fragment>
+						<TableCurrency onUkCurrency={this.state.ukCurrency} />
+						<Count
+							onChangeСurrency={this.changeСurrency}
+							onHandleSum={this.handleSum}
+							onHandleTax={this.handleTax}
+							total={this.state.tax + this.state.sum}
+						/>
+					</React.Fragment>
+				)}
 			</div>
 		);
 	}
