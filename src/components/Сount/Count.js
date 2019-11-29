@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import './Count.css';
 
-const Count = ({ onChangeСurrency, onHandleSum, onHandleTax, total }) => {
+const Count = ({ onHandleChangeСurrency, onHandleSum, onHandleTax, total }) => {
 	return (
 		<div>
 			<div>
-				<select onChange={(e) => onChangeСurrency(e)}>
+				<select onChange={(e) => onHandleChangeСurrency(e)}>
 					{/* <option>UAH</option> */}
 					<option value="1">USD</option>
 					<option value="2">EUR</option>

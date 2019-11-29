@@ -73,18 +73,21 @@ class App extends Component {
 	handleSum = (e) => {
 		this.setState({
 			sum: +e.target.value
-		});
-		// this.handleTotal();
-		// this.getTotalReset()
+		},this.getTotal );
 	};
 
 	handleTax = (e) => {
 		this.setState({
 			tax: +e.target.value
-		});
-		// this.handleTotal();
-		// this.getTotalReset()
+		},this.getTotal );
 	};
+	
+	getTotal = () =>{
+		const total = this.state.sum + this.state.tax
+		this.setState({
+			total: total
+		})
+	}
 
 	getTotalReset = () => {
 		if (this.state.tax === '' || this.state.sum == '') {
@@ -93,6 +96,10 @@ class App extends Component {
 			});
 		}
 	};
+
+	handleChangeСurrency = () =>{
+		
+	}
 
 	render() {
 		console.log(this.state);
@@ -105,10 +112,10 @@ class App extends Component {
 					<React.Fragment>
 						<TableCurrency onUkCurrency={this.state.ukCurrency} />
 						<Count
-							onChangeСurrency={this.changeСurrency}
+							onHandleChangeСurrency={this.handleChangeСurrency}
 							onHandleSum={this.handleSum}
 							onHandleTax={this.handleTax}
-							total={this.state.tax + this.state.sum}
+							total={this.state.total}
 						/>
 					</React.Fragment>
 				)}
