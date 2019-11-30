@@ -6,7 +6,7 @@ const Count = ({ onHandleChangeСurrency, onHandleSum, onHandleTax, total }) => 
 		<div>
 			<div>
 				<select onChange={(e) => onHandleChangeСurrency(e)}>
-					{/* <option>UAH</option> */}
+					<option value="0">UAH</option>
 					<option value="1">USD</option>
 					<option value="2">EUR</option>
 				</select>

@@ -16,7 +16,8 @@ class App extends Component {
 			currencyEUR: 0,
 			sum: 0,
 			total: null,
-			tax: 0
+			tax: 0,
+			countCurrency: 1
 		};
 	}
 
@@ -66,40 +67,63 @@ class App extends Component {
 		console.log(this.state.ukCurrency);
 	};
 
-	changeСurrency = (e) => {
-		return e.target.value === '1' ? this.state.currencyUSD : this.state.currencyEUR;
-	};
+	// changeСurrency = (e) => {
+	// 	return e.target.value === '1' ? this.state.currencyUSD : this.state.currencyEUR;
+	// };
 
 	handleSum = (e) => {
-		this.setState({
-			sum: +e.target.value
-		},this.getTotal );
+		this.setState(
+			{
+				sum: +e.target.value
+			},
+			this.getTotal
+		);
 	};
 
 	handleTax = (e) => {
-		this.setState({
-			tax: +e.target.value
-		},this.getTotal );
+		this.setState(
+			{
+				tax: +e.target.value
+			},
+			this.getTotal
+		);
 	};
-	
-	getTotal = () =>{
-		const total = this.state.sum + this.state.tax
+
+	getTotal = () => {
+		const total = this.state.sum * this.state.countCurrency - this.state.tax;
 		this.setState({
 			total: total
-		})
-	}
+		});
+	};
 
 	getTotalReset = () => {
-		if (this.state.tax === '' || this.state.sum == '') {
+		if (this.state.tax === '' || this.state.sum === '') {
 			this.setState({
 				total: 0
 			});
 		}
 	};
 
-	handleChangeСurrency = () =>{
-		
-	}
+	handleChangeСurrency = (e) => {
+		const { currencyUSD } = this.state;
+		const { currencyEUR } = this.state;
+		const currency = e.target.value;
+		if (currency === '1') {
+			this.setState({
+				countCurrency: currencyUSD
+			});
+		}
+		if (currency === '2') {
+			this.setState({
+				countCurrency: currencyEUR
+			});
+		}
+		if (currency === '0') {
+			this.setState({
+				countCurrency: 1
+			});
+		}
+	};
 
 	render() {
 		console.log(this.state);
