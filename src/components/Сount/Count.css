@@ -1,18 +1,97 @@
 .input {
+    width: 200px;
 	padding-top: 10px;
 	padding-bottom: 10px;
 	font-family: 'Open Sans', sans-serif;
 	font-size: 14px;
-	color: #323232;
+	color: #61dafb;
 	padding-left: 18px;
 	box-sizing: border-box;
-	border: 1px solid gray;
+	border: 1px solid #61dafb;
 	margin: 0 0;
-	border-radius: 2px;
+    border-radius: 7px;
+    display:block;
+    background:none;
+    transition:border-color .25s ease, box-shadow .25s ease;
+    margin: 3px;
 }
 .input:focus {
-	outline: none;
+    outline: none;
+    border-color:#ff3c50;
 }
 .input::placeholder {
-	color: gray;
+	color: #61dafb;
 }
+.tableRate{
+    /* margin: 75px auto 0; */
+    max-width: 500px;
+    height: 130px;
+    color: #61dafb;
+    background: rgb(40, 44, 52);
+    border: 1px solid #000;
+    border-radius: 7px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    font-size: 20px;
+    padding: 10px 20px;
+    /* align-items: center; */
+}
+/* Reset Select */
+select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -ms-appearance: none;
+    appearance: none;
+    outline: 0;
+    box-shadow: none;
+    border: 0 !important;
+    background: #2c3e50;
+    background-image: none;
+  }
+  /* Remove IE arrow */
+select::-ms-expand {
+    display: none;
+}
+    /* Custom Select */
+    .select {
+    position: relative;
+    display: flex;
+    width: 150px;
+    height: 50px;
+    line-height: 50px;
+    background: #2c3e50;
+    overflow: hidden;
+    border-radius: 7px;
+}
+select {
+    flex: 1;
+    padding: 0 .5em;
+    color: #61dafb;
+    cursor: pointer;
+}
+/* Arrow */
+.select::after {
+    content: '\25BC';
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 0 1em;
+    background: #34495e;
+    cursor: pointer;
+    pointer-events: none;
+    -webkit-transition: .25s all ease;
+    -o-transition: .25s all ease;
+    transition: .25s all ease;
+}
+/* Transition */
+.select:hover::after {
+    color: #ff3c50;
+}
+.displayInput{
+    display: flex;
+    flex-direction: column;
+    width: 320px;
+    align-items: center;
+}
+

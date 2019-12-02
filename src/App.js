@@ -15,7 +15,7 @@ class App extends Component {
 			currencyUSD: 0,
 			currencyEUR: 0,
 			sum: 0,
-			total: null,
+			total: 0,
 			tax: 0,
 			countCurrency: 1
 		};
@@ -90,9 +90,9 @@ class App extends Component {
 	};
 
 	getTotal = () => {
-		const total = this.state.sum * this.state.countCurrency - this.state.tax;
+		const total = this.state.sum * this.state.countCurrency - (this.state.sum * this.state.countCurrency/100*this.state.tax);
 		this.setState({
-			total: total
+			total: total.toFixed(2)
 		});
 	};
 
@@ -111,17 +111,17 @@ class App extends Component {
 		if (currency === '1') {
 			this.setState({
 				countCurrency: currencyUSD
-			});
+			},this.getTotal);
 		}
 		if (currency === '2') {
 			this.setState({
 				countCurrency: currencyEUR
-			});
+			},this.getTotal);
 		}
 		if (currency === '0') {
 			this.setState({
 				countCurrency: 1
-			});
+			},this.getTotal);
 		}
 	};
 
