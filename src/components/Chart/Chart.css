@@ -1,7 +1,7 @@
 
 #chart {
     height: 300px;
-    width: 550px;
+    max-width: 540px;
     background-color: rgb(40, 44, 52);
     margin: 0 auto;
     border-radius: 7px;

@@ -14,10 +14,10 @@ class Chart extends Component{
   renderChart = () => {
     c3.generate({
       bindto: "#chart",
-      size: {
-        height: 300,
-        width: 550
-      },
+    //   size: {
+    //     height: 300,
+    //     width: 550
+    //   },
       data: {
         columns: [
             this.state.column1,
