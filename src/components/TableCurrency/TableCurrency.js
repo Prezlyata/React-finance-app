@@ -3,8 +3,9 @@ import './TableCurrency.css';
 
 class TableCurrency extends Component {
 	render() {
-        const { onUkCurrency } = this.props;
-        const dateCurrency = onUkCurrency[0] && onUkCurrency[0].exchangedate;
+        const { onUkCurrency, onCurrency } = this.props;
+        const dateCurrency = onCurrency;
+        console.log(dateCurrency)
         const currencyList = onUkCurrency.map((item, i) => (
 			<div key={i}>
                 <div className="tableRateName">

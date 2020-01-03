@@ -1,0 +1,34 @@
+
+#chart {
+    height: 300px;
+    width: 550px;
+    background-color: rgb(40, 44, 52);
+    margin: 0 auto;
+    border-radius: 7px;
+    margin-top: 30px;
+}
+
+.c3-axis-y text {
+    fill: #61dafb;
+    font-size:12px;
+}
+.c3-axis-x text {
+    font-size:12px;
+    fill:#61dafb;
+}
+.c3 .c3-axis-x path, .c3 .c3-axis-x line { 
+    stroke: #61dafb;
+} 
+.c3 .c3-axis-y path, .c3 .c3-axis-y line {
+    stroke: #61dafb;     
+}
+
+.c3 {
+    fill:#61dafb;
+}
+  
+.c3-xgrid{ stroke: rgb(97,218,251, 0.3) !important;}
+.c3-ygrid{stroke: rgb(97,218,251, 0.3) !important;}
+
+    
+  

@@ -4,6 +4,8 @@ import './App.css';
 import Spiner from './components/Spiner/Spiner.js';
 import TableCurrency from './components/TableCurrency/TableCurrency.js';
 import Count from './components/Сount/Count.js';
+import Chart from './components/Chart/Chart.js'
+import { thisExpression } from '@babel/types';
 
 class App extends Component {
 	constructor(props) {
@@ -23,30 +25,45 @@ class App extends Component {
 
 	componentDidMount() {
 		setTimeout(() => {
-			this.getСurrency();
+			// this.getСurrency();
 			this.getСurrencyMain();
 		}, 2000);
 	}
 
-	getСurrency = () => {
-		axios
-			.get('https://old.bank.gov.ua/NBUStatService/v1/statdirectory/exchange?json')
-			.then((res) => {
-				this.setState({
-					сurrency: res.data,
-					loading: false
-				});
-			})
-			.catch((err) => {
-				console.log(err);
-			});
-	};
+	// getСurrency = () => {
+	// 	axios
+	// 		.get('https://old.bank.gov.ua/NBUStatService/v1/statdirectory/exchange?json')
+	// 		.then((res) => {
+	// 			this.setState({
+	// 				сurrency: res.data,
+	// 				loading: false
+	// 			});
+	// 		})
+	// 		.catch((err) => {
+	// 			console.log(err);
+	// 		});
+	// };
+
+
+	getDate = () =>{
+		let x = new Date();
+		let y = x.getFullYear().toString();
+		let m = (x.getMonth() + 1).toString();
+		let d = x.getDate().toString();
+		(d.length == 1) && (d = '0' + d);
+		(m.length == 1) && (m = '0' + m);
+		let yyyymmdd = y + m + d;
+		return yyyymmdd;
+	}
 
 	getСurrencyMain = () => {
+		let date = this.getDate()
+		console.log(date)
 		axios
-			.get('https://old.bank.gov.ua/NBUStatService/v1/statdirectory/exchange?date=20191118&json')
+			.get(`https://old.bank.gov.ua/NBUStatService/v1/statdirectory/exchange?date=${date}&json`)
 			.then((res) => {
 				this.setState({
+					сurrency: res.data.filter((el) => el.r030 === 840)[0].exchangedate,
 					ukCurrency: res.data.filter((el) => el.r030 === 840 || el.r030 === 978),
 					loading: false,
 					currencyUSD: res.data.filter((el) => el.r030 === 840)[0].rate,
@@ -134,13 +151,17 @@ class App extends Component {
 					<Spiner />
 				) : (
 					<React.Fragment>
-						<TableCurrency onUkCurrency={this.state.ukCurrency} />
+						<TableCurrency 
+							onUkCurrency={this.state.ukCurrency} 
+							onCurrency={this.state.сurrency}
+						/>
 						<Count
 							onHandleChangeСurrency={this.handleChangeСurrency}
 							onHandleSum={this.handleSum}
 							onHandleTax={this.handleTax}
 							total={this.state.total}
 						/>
+						<Chart />
 					</React.Fragment>
 				)}
 			</div>
