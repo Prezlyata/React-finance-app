@@ -5,7 +5,6 @@ class TableCurrency extends Component {
 	render() {
         const { onUkCurrency, onCurrency } = this.props;
         const dateCurrency = onCurrency;
-        console.log(dateCurrency)
         const currencyList = onUkCurrency.map((item, i) => (
 			<div key={i}>
                 <div className="tableRateName">

@@ -58,7 +58,6 @@ class App extends Component {
 
 	getСurrencyMain = () => {
 		let date = this.getDate()
-		console.log(date)
 		axios
 			.get(`https://old.bank.gov.ua/NBUStatService/v1/statdirectory/exchange?date=${date}&json`)
 			.then((res) => {
@@ -81,7 +80,6 @@ class App extends Component {
 		this.setState({
 			ukCurrency: ukCurrency
 		});
-		console.log(this.state.ukCurrency);
 	};
 
 	// changeСurrency = (e) => {
@@ -143,8 +141,6 @@ class App extends Component {
 	};
 
 	render() {
-		console.log(this.state);
-
 		return (
 			<div className="App">
 				{this.state.loading ? (
